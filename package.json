@@ -1,0 +1,20 @@
+{
+  "name": "api-movie",
+  "version": "1.0.0",
+  "description": "Sitio de visualización de películas construido con JavaScript para el consumo de una API REST publica",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/7-hader/api-movie"
+  },
+  "keywords": [
+    "JavaScript",
+    "API",
+    "REST"
+  ],
+  "author": "Jhon Morales <hader.seven@gmail.com>",
+  "license": "MIT"
+}
