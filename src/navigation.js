@@ -27,6 +27,8 @@ searchFormBtn.addEventListener('click', () => {
     } else {
       homePage();
     }
+
+    window.scrollTo(0, 0);
   }
   
   function homePage() {
@@ -64,6 +66,16 @@ searchFormBtn.addEventListener('click', () => {
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+
+      // '#category=id-name'
+    const [_, categoryData] = location.hash.split('=')
+      // ['#category', 'id-name']
+    const [categoryId, categoryName] = categoryData.split('-')
+      // ['id', 'name']
+
+    headerCategoryTitle.textContent = decodeURIComponent(categoryName)
+
+    getMoviesByCategory(categoryId);
   }
   
   function movieDetailsPage() {
