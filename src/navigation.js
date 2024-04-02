@@ -8,7 +8,7 @@
   });
   
   arrowBtn.addEventListener('click', () => {
-    location.hash = '#home';
+    history.back();
   });
   
   window.addEventListener('DOMContentLoaded', navigator, false);
