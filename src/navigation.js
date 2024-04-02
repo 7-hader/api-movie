@@ -134,4 +134,8 @@
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+
+    headerCategoryTitle.textContent = 'Tendencias'
+
+    getTrendingMovies()
   }
