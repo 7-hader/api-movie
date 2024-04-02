@@ -1,5 +1,6 @@
-searchFormBtn.addEventListener('click', () => {
-    location.hash = '#search=';
+  searchFormBtn.addEventListener('click', () => {
+
+    location.hash = '#search=' + searchFormInput.value;
   });
   
   trendingBtn.addEventListener('click', () => {
@@ -73,7 +74,7 @@ searchFormBtn.addEventListener('click', () => {
     const [categoryId, categoryName] = categoryData.split('-')
       // ['id', 'name']
 
-    headerCategoryTitle.textContent = decodeURIComponent(categoryName)
+    headerCategoryTitle.textContent = decodeURI(categoryName)
 
     getMoviesByCategory(categoryId);
   }
@@ -103,13 +104,19 @@ searchFormBtn.addEventListener('click', () => {
     arrowBtn.classList.remove('inactive');
     arrowBtn.classList.remove('header-arrow--white');
     headerTitle.classList.add('inactive');
-    headerCategoryTitle.classList.remove('inactive');
+    headerCategoryTitle.classList.add('inactive');
     searchForm.classList.remove('inactive');
   
     trendingPreviewSection.classList.add('inactive');
     categoriesPreviewSection.classList.add('inactive');
     genericSection.classList.remove('inactive');
     movieDetailSection.classList.add('inactive');
+
+      // '#search=value'
+    const [_, query] = location.hash.split('=')
+      // ['#search', 'value']
+
+    getMoviesBySearch(query)
   }
   
   function trendsPage() {
