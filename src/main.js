@@ -98,7 +98,7 @@ async function getMoviesByCategory(id) {
   })
   const movies = data.results
 
-  createMovies(movies, genericSection);
+  createMovies(movies, genericSection, true);
 }
 
 async function getMoviesBySearch(query) {
