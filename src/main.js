@@ -34,9 +34,15 @@ function createMovies(movies, container, lazyLoad = false) {
     movieImg.classList.add('movie-img');
     movieImg.setAttribute('alt', movie.title);
     movieImg.setAttribute(
-    lazyLoad ? 'data-img' : 'src',
-    'https://image.tmdb.org/t/p/w300' + movie.poster_path,
+      lazyLoad ? 'data-img' : 'src',
+      'https://image.tmdb.org/t/p/w300' + movie.poster_path,
     );
+    movieImg.addEventListener('error', () => {
+      movieImg.setAttribute(
+        'src', 
+        `https://via.placeholder.com/300x450/EEEAF2/3E0F64?text=No disponible`
+      )
+    })
 
     if (lazyLoad) {
       lazyLoader.observe(movieImg)
