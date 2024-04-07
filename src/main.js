@@ -128,31 +128,33 @@ async function getTrendingMovies() {
 
   createMovies(movies, genericSection, { lazyLoad:true, clean:true });
 
-  const btnLoadMore = document.createElement('button')
-  btnLoadMore.textContent = 'Cargar más'
-  btnLoadMore.addEventListener('click', getPaginatedTrendingMovies)
-  genericSection.appendChild(btnLoadMore)
+  // const btnLoadMore = document.createElement('button')
+  // btnLoadMore.textContent = 'Cargar más'
+  // btnLoadMore.addEventListener('click', getPaginatedTrendingMovies)
+  // genericSection.appendChild(btnLoadMore)
 }
 
-let page = 1;
-
 async function getPaginatedTrendingMovies() {
-  genericSection.querySelector('button').remove()
-  page++;
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 5);
+
+  if (scrollIsBottom) {
+    page++;    
+    const { data } = await api('trending/movie/day', {
+      params: {
+        page,
+      },
+    });
+    const movies = data.results
+    
+    createMovies(movies, genericSection, { lazyLoad:true, clean:false });
+  }
   
-  const { data } = await api('trending/movie/day', {
-    params: {
-      page,
-    },
-  });
-  const movies = data.results
-
-  createMovies(movies, genericSection, { lazyLoad:true, clean:false });
-
-  const btnLoadMore = document.createElement('button')
-  btnLoadMore.textContent = 'Cargar más'
-  btnLoadMore.addEventListener('click', getPaginatedTrendingMovies)
-  genericSection.appendChild(btnLoadMore)
+  // genericSection.querySelector('button').remove()
+  // const btnLoadMore = document.createElement('button')
+  // btnLoadMore.textContent = 'Cargar más'
+  // btnLoadMore.addEventListener('click', getPaginatedTrendingMovies)
+  // genericSection.appendChild(btnLoadMore)
 }
 
 async function getMovieById(id) {
