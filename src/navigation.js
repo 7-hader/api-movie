@@ -44,6 +44,8 @@ let infiniteScroll;
     if (infiniteScroll) {
       window.addEventListener('scroll', infiniteScroll, { passive:false });
     }
+    
+    page = 1;
   }
   
   function homePage() {
@@ -91,6 +93,8 @@ let infiniteScroll;
     headerCategoryTitle.textContent = decodeURI(categoryName)
 
     getMoviesByCategory(categoryId);
+
+    infiniteScroll = getPaginatedMoviesByCategory(categoryId)
   }
   
   function movieDetailsPage() {
@@ -136,6 +140,8 @@ let infiniteScroll;
       // ['#search', 'value']
 
     getMoviesBySearch(query)
+
+    infiniteScroll = getPaginatedMoviesBySearch(query)
   }
   
   function trendsPage() {
